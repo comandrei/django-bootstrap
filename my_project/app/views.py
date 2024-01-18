@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Produs
+from .models import Produs, Question, Answer
 
 # Create your views here.
 def salut(request):
@@ -20,3 +20,11 @@ def lista_produse(request):
 
 def produs(request):
     return HttpResponse("")
+
+
+def quiz(request):
+    question = Question.objects.first()
+    text = question.text
+    raspunsuri_relationate = question.answer_set.all()
+    raspunsuri = [(answer.value, answer.corect, answer.question.text) for answer in raspunsuri_relationate]
+    return HttpResponse(f"{text} <br/> {raspunsuri}") 
