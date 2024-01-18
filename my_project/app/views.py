@@ -17,3 +17,6 @@ def lista_produse(request):
     response_string += "".join(produse_formatat)
     response_string += "</ol>"
     return HttpResponse(response_string)
+
+def produs(request):
+    return HttpResponse("")
