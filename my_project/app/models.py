@@ -30,4 +30,5 @@ class UserProfile(models.Model):
     telefon = models.CharField(max_length=15)
     adresa = models.CharField(max_length=100)
     oras = models.CharField(max_length=20)
+    cnp = models.CharField(max_length=13, null=True, blank=True)
 
