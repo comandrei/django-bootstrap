@@ -23,3 +23,11 @@ class Answer(models.Model):
     value = models.CharField(max_length=10)
     corect = models.BooleanField(default=False)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    telefon = models.CharField(max_length=15)
+    adresa = models.CharField(max_length=100)
+    oras = models.CharField(max_length=20)
+
