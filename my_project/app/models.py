@@ -32,3 +32,22 @@ class UserProfile(models.Model):
     oras = models.CharField(max_length=20)
     cnp = models.CharField(max_length=13, null=True, blank=True)
 
+
+class Curs(models.Model):
+    nume = models.CharField(max_length=10)
+    descriere = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"Curs {self.nume}"
+
+
+class Student(models.Model):
+    nume = models.CharField(max_length=30)
+    telefon = models.CharField(max_length=100)
+    cursuri = models.ManyToManyField(Curs)
+
+    email = None
+
+    def __str__(self):
+        return f"Student {self.nume}"
+
