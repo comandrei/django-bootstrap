@@ -45,6 +45,7 @@ class Student(models.Model):
     nume = models.CharField(max_length=30)
     telefon = models.CharField(max_length=100)
     cursuri = models.ManyToManyField(Curs)
+    an = models.IntegerField(default=1)
 
     email = None
 
