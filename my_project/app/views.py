@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Produs, Question, Answer
+from .models import Produs, Question, Answer, Recenzie
 
 # Create your views here.
 def salut(request):
@@ -26,9 +26,12 @@ def lista_produse(request):
 def produs(request, id):
     try:
         produs = Produs.objects.get(id=id)
+        #recenzii = Recenzie.objects.filter(produs=produs) # echivalent cu linia de mai jos
+        recenzii = produs.recenzie_set.all()
+        recenzii_str = [recenzie.titlu for recenzie in recenzii]
     except Produs.DoesNotExist:
         return HttpResponse("404")
-    return HttpResponse(f"{produs}")
+    return HttpResponse(f"{produs} <br /> {recenzii_str}")
 
 
 def quiz(request):
