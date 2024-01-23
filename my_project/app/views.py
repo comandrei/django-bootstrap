@@ -10,6 +10,8 @@ def salut(request):
 def lista_produse(request):
     if "pret_maxim" in request.GET:
         produse = Produs.objects.filter(pret__lt=int(request.GET["pret_maxim"]))
+    elif "search" in request.GET:
+        produse = Produs.objects.filter(titlu__icontains=request.GET["search"])
     else:
         produse = Produs.objects.all()
     produse_formatat = [
