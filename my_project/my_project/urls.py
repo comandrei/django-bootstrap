@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("salut", views.salut),
     path("lista-produse", views.lista_produse),
+    path("produs/<int:id>/", views.produs),
     path("quiz", views.quiz)
 
 ]

@@ -9,6 +9,9 @@ class Produs(models.Model):
     descriere = models.CharField(max_length=1024, null=True, blank=True, help_text="Introduceti o descriere")
     imagine = models.FileField(null=True, blank=True)
 
+    def __str__(self):
+        return f"Produs {self.titlu} "
+
 
 class Favorit(models.Model):
     produs = models.ForeignKey(Produs, on_delete=models.CASCADE)

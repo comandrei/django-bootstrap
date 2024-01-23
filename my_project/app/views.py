@@ -23,8 +23,12 @@ def lista_produse(request):
     response_string += "</ol>"
     return HttpResponse(response_string)
 
-def produs(request):
-    return HttpResponse("")
+def produs(request, id):
+    try:
+        produs = Produs.objects.get(id=id)
+    except Produs.DoesNotExist:
+        return HttpResponse("404")
+    return HttpResponse(f"{produs}")
 
 
 def quiz(request):
