@@ -11,6 +11,13 @@ class Produs(models.Model):
 
     def __str__(self):
         return f"Produs {self.titlu} "
+    
+
+class Recenzie(models.Model):
+    produs = models.ForeignKey(Produs, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=1)
+    titlu = models.CharField(max_length=10)
+    descriere = models.CharField(max_length=100)
 
 
 class Favorit(models.Model):
