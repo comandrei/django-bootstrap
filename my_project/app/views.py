@@ -21,14 +21,13 @@ def lista_produse(request):
         f"<li>{produs.id } - {produs.titlu} - {produs.pret} - {produs.stoc}</li>"
         for produs in produse
     ]
-    
     for produs in produse:
         produs.pret += 1
         produs.save()
     
-    response_string = "<ul>"
+    response_string = "<body><ul>"
     response_string += "".join(produse_formatat)
-    response_string += "</ul>"
+    response_string += "</ul></body>"
     return HttpResponse(response_string)
 
 def produs(request, id):
