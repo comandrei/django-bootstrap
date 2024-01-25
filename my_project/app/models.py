@@ -86,11 +86,15 @@ class PostManager(models.Manager):
         return self.filter(visible_from__lte=acum).filter(models.Q(end_on__gte=acum) | models.Q(end_on__isnull=True))
 
 class Post(models.Model):
+    class Meta:
+        ordering = ('-updated', )
 
     titlu = models.CharField(max_length=50)
     continut = models.CharField(max_length=300)
     visible_from = models.DateTimeField()
     end_on = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     objects = PostManager()
 
