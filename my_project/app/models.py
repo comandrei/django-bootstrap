@@ -62,3 +62,17 @@ class Student(models.Model):
     def __str__(self):
         return f"Student {self.nume}"
 
+
+class Elev(models.Model):
+    nume = models.CharField(max_length=30)
+    an = models.IntegerField(default=1)
+    cursuri = models.ManyToManyField(Curs, through='ElevCurs')
+
+
+class ElevCurs(models.Model):
+    elev = models.ForeignKey(Elev, on_delete=models.CASCADE)
+    curs = models.ForeignKey(Curs, on_delete=models.CASCADE)
+    nota = models.IntegerField(default=5)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+

@@ -18,12 +18,12 @@ def lista_produse(request):
     produse = produse.order_by("-pret", "-titlu") # Pret descrescator, in caz de egalitate de pret sorteaza dupa titlu
 
     produse_formatat = [
-        f"<li>{produs.titlu} - {produs.pret} - {produs.stoc}</li>"
+        f"<li>{produs.id } - {produs.titlu} - {produs.pret} - {produs.stoc}</li>"
         for produs in produse
     ]
-    response_string = "<ol>"
+    response_string = "<ul>"
     response_string += "".join(produse_formatat)
-    response_string += "</ol>"
+    response_string += "</ul>"
     return HttpResponse(response_string)
 
 def produs(request, id):
