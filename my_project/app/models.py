@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -76,3 +77,23 @@ class ElevCurs(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+
+
+class PostManager(models.Manager):
+
+    def active(self):
+        acum = now()
+        return self.filter(visible_from__lte=acum).filter(models.Q(end_on__gte=acum) | models.Q(end_on__isnull=True))
+
+class Post(models.Model):
+
+    titlu = models.CharField(max_length=50)
+    continut = models.CharField(max_length=300)
+    visible_from = models.DateTimeField()
+    end_on = models.DateTimeField(null=True, blank=True)
+
+    objects = PostManager()
+
+# Post.objects.filter(visible_from__lte=acum).filter(Q(end_on__gte=acum) | Q(end_on__isnull=True))
+# Post.objects.active() - same as above
+    
