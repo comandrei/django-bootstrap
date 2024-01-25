@@ -65,7 +65,11 @@ class Student(models.Model):
 
 
 class Elev(models.Model):
+    class Meta:
+        unique_together = [("nume", "prenume")]
+
     nume = models.CharField(max_length=30)
+    prenume = models.CharField(max_length=30)
     an = models.IntegerField(default=1)
     cursuri = models.ManyToManyField(Curs, through='ElevCurs')
 
