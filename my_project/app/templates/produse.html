@@ -4,11 +4,16 @@
         <title>Lista produse</title>
     </head>
     <body>
+        <h1>Altex</h1>
         <ol>
             {% for produs in produse %}
               <li>
                 <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }} by {{ produs.producator }}</a> - {{ produs.pret }}
-                Rating {{ produs.rating }} / 5
+                {% if produs.rating > 0 %}
+                Rating {{ produs.rating|floatformat:2 }} / 5
+                {% else %}
+                Nu exista rating-uri inca
+                {% endif %}
               </li>
                
                 {% comment %}
