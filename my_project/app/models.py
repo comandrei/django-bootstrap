@@ -13,6 +13,18 @@ class Produs(models.Model):
     def __str__(self):
         return f"Produs {self.titlu} "
     
+    @property
+    def rating(self):
+        rating = 0
+        recenzii = self.recenzie_set.all()
+        for recenzie in recenzii:
+            rating +=recenzie.rating
+        try:
+            return rating // len(recenzii)
+        except ZeroDivisionError:
+            return 0
+
+    
 
 class Recenzie(models.Model):
     produs = models.ForeignKey(Produs, on_delete=models.CASCADE)
