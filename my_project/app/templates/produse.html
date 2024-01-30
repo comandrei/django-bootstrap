@@ -7,7 +7,7 @@
         <ol>
             {% for produs in produse %}
               <li>
-                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }}</a> - {{ produs.pret }}
+                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }} by {{ produs.producator }}</a> - {{ produs.pret }}
                 Rating {{ produs.rating }} / 5
               </li>
                

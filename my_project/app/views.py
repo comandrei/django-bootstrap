@@ -10,7 +10,7 @@ def salut(request):
     return HttpResponse("Salut din Python")
 
 def lista_produse(request):
-    produse = Produs.objects.all()
+    produse = Produs.objects.all().select_related("producator")
     if "pret_maxim" in request.GET:
         produse = produse.filter(pret__lt=int(request.GET["pret_maxim"]))
     if "search" in request.GET:
