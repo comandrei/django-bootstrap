@@ -10,7 +10,7 @@ def salut(request):
     return HttpResponse("Salut din Python")
 
 def lista_produse(request):
-    produse = Produs.objects.all().select_related("producator")
+    produse = Produs.objects.all().select_related("producator").prefetch_related("recenzie_set")
     if "pret_maxim" in request.GET:
         produse = produse.filter(pret__lt=int(request.GET["pret_maxim"]))
     if "search" in request.GET:
@@ -37,7 +37,7 @@ def produs(request, id):
         recenzii_str = [recenzie.titlu for recenzie in recenzii]
     except Produs.DoesNotExist:
         return HttpResponse("404")
-    return HttpResponse(f"{produs} <br /> {recenzii_str}")
+    return render(request, "produs.html", {"produs": produs})
 
 
 def quiz(request):

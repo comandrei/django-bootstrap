@@ -27,7 +27,7 @@ class Produs(models.Model):
         for recenzie in recenzii:
             rating +=recenzie.rating
         try:
-            return rating // len(recenzii)
+            return rating / len(recenzii)
         except ZeroDivisionError:
             return 0
 
