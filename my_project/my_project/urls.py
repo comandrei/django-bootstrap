@@ -22,7 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("salut", views.salut),
     path("lista-produse", views.lista_produse),
-    path("produs/<int:id>/", views.produs),
+    path("produs-detaliu/<int:id>/", views.produs, name="pagina-produs"),
     path("quiz", views.quiz),
     path("__debug__/", include("debug_toolbar.urls"))
 

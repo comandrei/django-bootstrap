@@ -6,7 +6,11 @@
     <body>
         <ol>
             {% for produs in produse %}
-              <li>{{ produs }} - {{ produs.pret }}</li>
+              <li>
+                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }}</a> - {{ produs.pret }}</li>
+                {% comment %}
+                <a href="/pagina-produs/{{ produs.id}}/">{{ produs }}</a>
+                {% endcomment %}
             {% endfor %}
         </ol>
     </body>
