@@ -6,7 +6,8 @@ from django.db.models import F
 
 # Create your views here.
 def salut(request):
-    return HttpResponse("Salut")
+    return render(request, "index.html")
+    return HttpResponse("Salut din Python")
 
 def lista_produse(request):
     produse = Produs.objects.all()
