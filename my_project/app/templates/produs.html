@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Produs {{produs.nume}}</title>
-    </head>
-    <body>
-        <h1>Altex</h1>
+{% extends "base.html" %}
+{% block title %}
+Produs {{produs.titlu}} - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
         {{ produs }}
         <h2>Recenzii</h2>
         {% for recenzie in produs.recenzie_set.all %}
             {{recenzie.titlu}} - {{ recenzie.rating }} <br/>
         {% endfor %}
-    </body>
-</html>
+{% endblock body %}
