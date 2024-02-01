@@ -1,0 +1,31 @@
+{% load my_filters %}
+<div class="container">
+    <div class="row">
+      {% for produs in produse %}
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <img style='width:200px; height:auto; ' src="{%if produs.imagine %}{{ produs.imagine.url }}{% endif %}" class="card-img-top"></br>
+                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }} by {{ produs.producator }}</a>
+               
+              </h5>
+              <br>
+              <p class="card-text">{{ produs.pret }}</p>
+              {% if produs.rating > 0 %}
+              <p class="card-text">Rating {{ produs.rating|floatformat:2 }} / 5</p>
+              {% else %}
+              <p class="card-text">Nu exista rating-uri inca</p>
+              {% endif %}
+              {{ produs.rating|starrating }}
+             
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>

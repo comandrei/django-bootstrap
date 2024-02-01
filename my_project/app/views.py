@@ -6,8 +6,8 @@ from django.db.models import F
 
 # Create your views here.
 def salut(request):
-    return render(request, "index.html")
-    return HttpResponse("Salut din Python")
+    produse = Produs.objects.all().select_related("producator").prefetch_related("recenzie_set").order_by("-created")[:3]
+    return render(request, "index.html", {"produse": produse})
 
 def lista_produse(request):
     produse = Produs.objects.all().select_related("producator").prefetch_related("recenzie_set")
