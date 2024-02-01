@@ -1,18 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Lista produse - {{ block.super }} {% endblock title %}
 {% block body %}
-            {% for produs in produse %}
-              <li>
-                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }} by {{ produs.producator }}</a> - {{ produs.pret }}
-                {% if produs.rating > 0 %}
-                Rating {{ produs.rating|floatformat:2 }} / 5
-                {% else %}
-                Nu exista rating-uri inca
-                {% endif %}
-              </li>
+  <div class="container">
+    <div class="row">
+      {% for produs in produse %}
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <img style='width:200px; height:auto; ' src="{{ produs.imagine.url }}" class="card-img-top"></br>
+                <a href="{% url 'pagina-produs' produs.id %}" target="_blank">{{ produs }} by {{ produs.producator }}</a>
                
-                {% comment %}
-                <a href="/pagina-produs/{{ produs.id}}/">{{ produs }}</a>
-                {% endcomment %}
-            {% endfor %}
+              </h5>
+              <br>
+              <p class="card-text">{{ produs.pret }}</p>
+              
+                <i class="bi {% if produs.rating > 0 %} {% if produs.rating < 1 %} bi-star-half {% else %} bi-star-fill {% endif %}  bi-star-fill text-warning {% else %} bi-star {% endif %}  "></i>
+                <i class="bi {% if produs.rating > 1 %} {% if produs.rating < 2 %} bi-star-half {% else %} bi-star-fill {% endif %} bi-star-fill text-warning {% else %} bi-star {% endif %}"></i>
+                <i class="bi {% if produs.rating > 2 %} {% if produs.rating < 3 %} bi-star-half {% else %} bi-star-fill {% endif %}bi-star-fill text-warning {% else %} bi-star {% endif %}"></i>
+                <i class="bi {% if produs.rating > 3 %} {% if produs.rating < 4 %} bi-star-half {% else %} bi-star-fill {% endif %}  bi-star-fill text-warning {% else %} bi-star {% endif %}  "></i>
+                <i class="bi {% if produs.rating > 4 %} {% if produs.rating < 5 %} bi-star-half {% else %} bi-star-fill {% endif %}bi-star-fill text-warning {% else %} bi-star {% endif %}"></i>
+
+              {% if produs.rating > 0 %}
+              <p class="card-text">Rating {{ produs.rating|floatformat:2 }} / 5</p>
+              {% else %}
+              <p class="card-text">Nu exista rating-uri inca</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 {% endblock body %}
+

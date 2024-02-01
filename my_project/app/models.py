@@ -16,6 +16,8 @@ class Produs(models.Model):
     stoc = models.IntegerField(default=0)
     descriere = models.CharField(max_length=1024, null=True, blank=True, help_text="Introduceti o descriere")
     imagine = models.FileField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Produs {self.titlu} "

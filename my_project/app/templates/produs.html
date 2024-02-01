@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block title %}
 Produs {{produs.titlu}} - {{ block.super }}
 {% endblock title %}
 
 {% block body %}
-        {{ produs }}
+        {{ produs }} <br>
+        Data crearii: {{ produs.created|naturaltime }}
         <h2>Recenzii</h2>
         {% for recenzie in produs.recenzie_set.all %}
             {{recenzie.titlu}} - {{ recenzie.rating }} <br/>
