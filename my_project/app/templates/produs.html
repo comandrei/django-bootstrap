@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% load humanize %}
+{% load my_filters %}
 {% block title %}
 Produs {{produs.titlu}} - {{ block.super }}
 {% endblock title %}
 
 {% block body %}
         {{ produs }} <br>
-        Data crearii: {{ produs.created|naturaltime }}
+        Data crearii: {{ produs.created|naturaltime }} <br />
+        Rating {{ produs.rating|starrating }}
         <h2>Recenzii</h2>
         {% for recenzie in produs.recenzie_set.all %}
             {{recenzie.titlu}} - {{ recenzie.rating }} <br/>
