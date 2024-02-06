@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.forms import ValidationError
 
+
 class ContactForm(forms.Form):
     email = forms.EmailField(required=True)
     subiect = forms.CharField()

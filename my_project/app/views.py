@@ -2,6 +2,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+
 
 
 from .models import Produs, Question, Answer, Recenzie
@@ -75,3 +77,9 @@ def custom_login(request):
             return redirect("/")
 
     return render(request, 'login.html', {'form': form})
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
