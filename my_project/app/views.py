@@ -45,4 +45,8 @@ def quiz(request):
     text = question.text
     raspunsuri_relationate = question.answer_set.all()
     raspunsuri = [(answer.value, answer.corect, answer.question.text) for answer in raspunsuri_relationate]
-    return HttpResponse(f"{text} <br/> {raspunsuri}") 
+    return HttpResponse(f"{text} <br/> {raspunsuri}")
+
+
+def contact(request):
+    return render(request, "contact.html", {})
