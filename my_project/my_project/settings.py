@@ -139,3 +139,5 @@ if DEBUG:
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'galerie'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

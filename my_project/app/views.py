@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -49,4 +50,9 @@ def quiz(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        subject = request.POST["subiect"]
+        mesaj = request.POST["mesaj"]
+        send_mail(subject, mesaj, from_email="contact@siit.ro", recipient_list=[email])
     return render(request, "contact.html", {})
