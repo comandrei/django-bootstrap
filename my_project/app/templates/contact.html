@@ -2,9 +2,9 @@
 {% block body %}
 <h1>Contact</h1>
 <form>
-    <label for="email">Email:</label><input type="text" name="email" /> <br />
+    <label for="email">Email:</label><input type="email" name="email" required placeholder="email@email.com"/> <br />
     <label for="email">Subiect</label><input type="text" name="subiect" /> <br />
-    <label for="mesaj">Mesaj:</label><input type="text" name="mesaj" /><br />
+    <label for="mesaj">Mesaj:</label><textarea cols="20" rows="10"></textarea><br />
     <input type="submit" value="Trimite!" />
 </form>
 {% endblock body%}
