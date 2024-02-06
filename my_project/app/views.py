@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Produs, Question, Answer, Recenzie
+from .forms import ContactForm
 from django.db.models import F
+
 
 # Create your views here.
 def salut(request):
@@ -50,9 +52,10 @@ def quiz(request):
 
 
 def contact(request):
+    form = ContactForm()
     if request.method == "POST":
         email = request.POST["email"]
         subject = request.POST["subiect"]
         mesaj = request.POST["mesaj"]
         send_mail(subject, mesaj, from_email="contact@siit.ro", recipient_list=[email])
-    return render(request, "contact.html", {})
+    return render(request, "contact.html", {"form": form})
