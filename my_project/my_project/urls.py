@@ -27,6 +27,7 @@ urlpatterns = [
     path("produs-detaliu/<int:id>/", views.produs, name="pagina-produs"),
     path("quiz", views.quiz),
     path("contact", views.contact),
-    path("__debug__/", include("debug_toolbar.urls"))
+    path("__debug__/", include("debug_toolbar.urls")),
+    path('login', views.custom_login, name='login')
 
 ] +  static(MEDIA_URL, document_root=MEDIA_ROOT)

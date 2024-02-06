@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+
+<form method="POST">
+    {% csrf_token %}
+ 
+        {{form.as_p}}
+        {{ eroare }} <br>
+    <input type="submit" value="Trimite!" />
+</form>
+
+{% endblock body %}

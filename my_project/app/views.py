@@ -1,9 +1,11 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+
 
 from .models import Produs, Question, Answer, Recenzie
-from .forms import ContactForm
+from .forms import *
 from django.db.models import F
 
 
@@ -62,3 +64,22 @@ def contact(request):
             send_mail(subiect, mesaj, from_email="contact@siit.ro", recipient_list=[email])
             return redirect("/")
     return render(request, "contact.html", {"form": form})
+
+
+def custom_login(request):
+    form = CustomLoginForm()
+    if request.method == 'POST':
+        eroare = ''
+        form = CustomLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+    
+            else:
+                eroare = 'User sau parola incorecta!'
+    return render(request, 'login.html', {'form': form, 'eroare': eroare})
