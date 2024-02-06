@@ -69,17 +69,9 @@ def contact(request):
 def custom_login(request):
     form = CustomLoginForm()
     if request.method == 'POST':
-        eroare = ''
         form = CustomLoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            login(request, form.authenticate_user)
+            return redirect("/")
 
-            if user is not None:
-                login(request, user)
-                return redirect("/")
-    
-            else:
-                eroare = 'User sau parola incorecta!'
-    return render(request, 'login.html', {'form': form, 'eroare': eroare})
+    return render(request, 'login.html', {'form': form})
