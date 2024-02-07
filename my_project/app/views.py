@@ -63,7 +63,10 @@ def contact(request):
             subiect = form.cleaned_data["subiect"]
             mesaj = form.cleaned_data["mesaj"]
             email = form.cleaned_data["email"]
-            send_mail(subiect, mesaj, from_email="contact@siit.ro", recipient_list=[email])
+            copie = form.cleaned_data["trimite_copie"]
+            copie_text = f"{type(copie)}, {copie}"
+            print(type(copie), copie)
+            send_mail(subiect, mesaj+copie_text, from_email="contact@siit.ro", recipient_list=[email])
             return redirect("/")
     return render(request, "contact.html", {"form": form})
 

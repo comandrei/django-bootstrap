@@ -5,8 +5,15 @@ from django.forms import ValidationError
 
 class ContactForm(forms.Form):
     email = forms.EmailField(required=True)
-    subiect = forms.CharField()
+    subiect = forms.CharField(label="Subiectul tau")
     mesaj = forms.CharField(widget=forms.Textarea())
+    trimite_copie = forms.BooleanField(required=False)
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if not email.endswith("@gmail.com"):
+            raise ValidationError("Email invalid!")
+        return email
     
     
 class CustomLoginForm(forms.Form):
