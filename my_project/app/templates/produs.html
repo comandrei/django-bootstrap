@@ -13,4 +13,7 @@ Produs {{produs.titlu}} - {{ block.super }}
         {% for recenzie in produs.recenzie_set.all %}
             {{recenzie.titlu}} - {{ recenzie.rating }} <br/>
         {% endfor %}
+        <a href="{% url 'edit-produs' produs.id %}">Editeaza</a>
+
+
 {% endblock body %}
