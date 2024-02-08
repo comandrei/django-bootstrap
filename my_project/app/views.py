@@ -5,9 +5,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
-
-from .models import Produs, Question, Answer, Recenzie
+from .decorators import is_staff
 from .forms import *
+from .models import Produs, Question, Answer, Recenzie
+
+
 from django.db.models import F
 
 
@@ -88,10 +90,9 @@ def logout_view(request):
     return redirect("/")
 
 
+@is_staff
 @login_required
 def adauga_produs(request):
-    if not request.user.is_staff:
-        return redirect("/")
     formular = ProdusForm()
     if request.method == "POST":
         formular = ProdusForm(request.POST)
