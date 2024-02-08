@@ -25,10 +25,12 @@ urlpatterns = [
     path("", views.salut, name="home"),
     path("lista-produse", views.lista_produse, name="pagina-produse"),
     path("produs-detaliu/<int:id>/", views.produs, name="pagina-produs"),
+    path("adauga-produs/", views.adauga_produs),
     path("quiz", views.quiz),
     path("contact", views.contact, name='contact'),
     path("__debug__/", include("debug_toolbar.urls")),
     path('login', views.custom_login, name='login'),
     path('logout',  views.logout_view, name='logout'),
+
 
 ] +  static(MEDIA_URL, document_root=MEDIA_ROOT)
