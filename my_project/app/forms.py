@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.forms import ValidationError
 
+from .models import Produs
 
 class ContactForm(forms.Form):
     email = forms.EmailField(required=True)
@@ -30,3 +31,9 @@ class CustomLoginForm(forms.Form):
         else:
             self.authenticate_user = user
         return self.cleaned_data
+    
+class ProdusForm(forms.ModelForm):
+    class Meta:
+        model = Produs
+        fields = "__all__"
+
