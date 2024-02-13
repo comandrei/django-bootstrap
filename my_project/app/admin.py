@@ -9,8 +9,6 @@ from .forms import ProdusForm
 
 
 admin.site.register(Favorit)
-admin.site.register(Question)
-admin.site.register(Answer)
 admin.site.register(UserProfile)
 admin.site.register(Curs)
 
@@ -56,3 +54,11 @@ class StudentAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(Student, StudentAdmin)
+
+class AnswerInline(admin.StackedInline):
+    model = Answer
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = (AnswerInline, )
+
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Answer)
