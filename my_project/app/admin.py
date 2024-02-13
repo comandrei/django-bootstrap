@@ -39,9 +39,12 @@ class ProdusAdmin(admin.ModelAdmin):
     actions = (retrage_din_oferta, )
     form = ProdusForm
 
-    # def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
-    #     return super().get_queryset(request).select_related("producator")
-
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
+        qs = super().get_queryset(request)
+        if request.user.is_superuser is False:
+            return qs.none()
+        return qs
+    
 admin.site.register(Produs, ProdusAdmin)
 
 class StudentAdmin(admin.ModelAdmin):
