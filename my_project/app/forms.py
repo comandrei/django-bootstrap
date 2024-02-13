@@ -35,5 +35,6 @@ class CustomLoginForm(forms.Form):
 class ProdusForm(forms.ModelForm):
     class Meta:
         model = Produs
-        fields = "__all__"
+        #fields = "__all__"
+        exclude = ["imagine", "titlu"]
 

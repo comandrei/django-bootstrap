@@ -5,6 +5,7 @@ from django.http import HttpRequest
 
 # Register your models here.
 from .models import Produs, Favorit, Question, Answer, UserProfile, Curs, Student, Recenzie, Elev, ElevCurs, Post, Producator
+from .forms import ProdusForm
 
 
 admin.site.register(Favorit)
@@ -32,10 +33,11 @@ class ProdusAdmin(admin.ModelAdmin):
     list_filter = ("producator", )
     list_per_page = 3
     change_list_template = "admin/produs_change_list.html"
+    change_form_template = "admin/produs_change_form.html"
     list_select_related = ("producator", )
     list_editable = ("titlu", "stoc")
     actions = (retrage_din_oferta, )
-
+    form = ProdusForm
 
     # def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
     #     return super().get_queryset(request).select_related("producator")
