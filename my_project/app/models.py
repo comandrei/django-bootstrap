@@ -39,7 +39,13 @@ class Recenzie(models.Model):
     produs = models.ForeignKey(Produs, on_delete=models.CASCADE)
     rating = models.IntegerField(default=1)
     titlu = models.CharField(max_length=10)
-    descriere = models.CharField(max_length=100)
+    descriere = models.CharField(max_length=1000)
+
+
+class Intrebare(models.Model):
+    produs = models.ForeignKey(Produs, on_delete=models.CASCADE)
+    text_intrebare = models.CharField(max_length=100)
+    text_raspuns = models.CharField(max_length=1000)
 
 
 class Favorit(models.Model):

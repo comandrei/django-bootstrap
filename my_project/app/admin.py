@@ -4,7 +4,7 @@ from django.db.models.query import QuerySet
 from django.http import HttpRequest
 
 # Register your models here.
-from .models import Produs, Favorit, Question, Answer, UserProfile, Curs, Student, Recenzie, Elev, ElevCurs, Post, Producator
+from .models import Produs, Favorit, Question, Answer, UserProfile, Curs, Student, Recenzie, Elev, ElevCurs, Post, Producator, Intrebare
 from .forms import ProdusForm
 
 
@@ -25,6 +25,10 @@ def retrage_din_oferta(modeladmin, request, queryset):
 
     queryset.update(stoc=0)
 
+class IntrebareInline(admin.TabularInline):
+    model = Intrebare
+    extra = 1
+
 class ProdusAdmin(admin.ModelAdmin):
     search_fields = ("titlu", "producator__nume")
     list_display = ("producator", "titlu", "stoc")
@@ -36,6 +40,7 @@ class ProdusAdmin(admin.ModelAdmin):
     list_editable = ("titlu", "stoc")
     actions = (retrage_din_oferta, )
     form = ProdusForm
+    inlines = (IntrebareInline, )
 
     def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
         qs = super().get_queryset(request)
@@ -57,6 +62,7 @@ admin.site.register(Student, StudentAdmin)
 
 class AnswerInline(admin.StackedInline):
     model = Answer
+    extra = 1
 class QuestionAdmin(admin.ModelAdmin):
     inlines = (AnswerInline, )
 
