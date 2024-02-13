@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 
 # Create your models here.
 class Producator(models.Model):
@@ -32,6 +33,9 @@ class Produs(models.Model):
             return rating / len(recenzii)
         except ZeroDivisionError:
             return 0
+        
+    def get_absolute_url(self):
+        return reverse_lazy("pagina-produs", args=(self.id, ))
 
     
 
