@@ -28,6 +28,10 @@ def retrage_din_oferta(modeladmin, request, queryset):
 class IntrebareInline(admin.TabularInline):
     model = Intrebare
     extra = 1
+    readonly_fields = ("text_intrebare", )
+
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
+        return super().get_queryset(request).filter(text_raspuns__isnull=True)
 
 class ProdusAdmin(admin.ModelAdmin):
     search_fields = ("titlu", "producator__nume")

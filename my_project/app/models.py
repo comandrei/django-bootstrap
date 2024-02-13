@@ -45,7 +45,7 @@ class Recenzie(models.Model):
 class Intrebare(models.Model):
     produs = models.ForeignKey(Produs, on_delete=models.CASCADE)
     text_intrebare = models.CharField(max_length=100)
-    text_raspuns = models.CharField(max_length=1000)
+    text_raspuns = models.CharField(max_length=1000, null=True, blank=True)
 
 
 class Favorit(models.Model):
