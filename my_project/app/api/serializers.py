@@ -5,6 +5,9 @@ class ProdusSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Produs
         fields = "__all__"
+        depth = 1
+
+    
 
 class ProducatorSerializer(HyperlinkedModelSerializer):
     class Meta:
