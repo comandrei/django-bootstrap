@@ -33,6 +33,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('login', views.custom_login, name='login'),
     path('logout',  views.logout_view, name='logout'),
+    path('test_api', views.api_view),
 
 
 ] +  static(MEDIA_URL, document_root=MEDIA_ROOT)

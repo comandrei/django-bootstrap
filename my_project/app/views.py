@@ -1,3 +1,5 @@
+import json 
+
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -121,3 +123,11 @@ class ProdusUpdateView(UpdateView):
     form_class = ProdusForm
     template_name = "adauga_produs.html"
     success_url = reverse_lazy("pagina-produse")
+
+
+
+def api_view(request):
+    raspuns = {
+        "cheie": "valoare"
+    }
+    return HttpResponse(json.dumps(raspuns), content_type="application/json")
