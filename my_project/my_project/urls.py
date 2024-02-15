@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from app import views
+from app.api import router
 from .settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
@@ -34,6 +35,8 @@ urlpatterns = [
     path('login', views.custom_login, name='login'),
     path('logout',  views.logout_view, name='logout'),
     path('test_api', views.api_view),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls'))
 
 
 ] +  static(MEDIA_URL, document_root=MEDIA_ROOT)
