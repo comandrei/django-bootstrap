@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "debug_toolbar",
     "rest_framework",
+    "tinymce",
     "app",
     'django.contrib.humanize',
 ]

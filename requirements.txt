@@ -3,3 +3,4 @@ django-extensions==3.2.3
 pygraphviz==1.12
 django-debug-toolbar==4.2.0
 djangorestframework==3.14.0
+django-tinymce==3.7.1

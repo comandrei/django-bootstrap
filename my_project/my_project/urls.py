@@ -36,6 +36,7 @@ urlpatterns = [
     path('logout',  views.logout_view, name='logout'),
     path('test_api', views.api_view),
     path('api/', include(router.urls)),
+    path('tinymce/', include('tinymce.urls')),
     path('api-auth/', include('rest_framework.urls'))
 
 
