@@ -62,10 +62,10 @@ class ProdusAdmin(admin.ModelAdmin):
 admin.site.register(Produs, ProdusAdmin)
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("nume", "an")
+    list_display = ("nume", "prenume", "an")
     list_filter = ("an", )
     fieldsets = (
-        ('Date Personale', {'fields': ["nume", "telefon"]}),
+        ('Date Personale', {'fields': ["nume", "prenume", "telefon"]}),
         ('Date scoala', {'fields': ["an", "cursuri"], 'classes': ('collapse', )})
     )
 

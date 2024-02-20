@@ -85,6 +85,7 @@ class Curs(models.Model):
 
 class Student(models.Model):
     nume = models.CharField(max_length=30)
+    prenume = models.CharField(max_length=30, null=True, blank=True)
     telefon = models.CharField(max_length=100)
     cursuri = models.ManyToManyField(Curs)
     an = models.IntegerField(default=1)
