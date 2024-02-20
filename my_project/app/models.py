@@ -14,7 +14,7 @@ class Produs(models.Model):
     producator = models.ForeignKey(Producator, null=True, blank=True, on_delete=models.CASCADE)
     titlu = models.CharField(max_length=50, unique=True)
     pret = models.FloatField(db_index=True)
-    stoc = models.IntegerField(default=0)
+    stoc = models.IntegerField(default=0, db_index=True)
     descriere = models.CharField(max_length=1024, null=True, blank=True, help_text="Introduceti o descriere")
     imagine = models.FileField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
