@@ -62,6 +62,7 @@ def quiz(request):
 
 def contact(request):
     form = ContactForm()
+    mesaj = ""
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -72,8 +73,8 @@ def contact(request):
             copie_text = f"{type(copie)}, {copie}"
             print(type(copie), copie)
             send_mail(subiect, mesaj+copie_text, from_email="contact@siit.ro", recipient_list=[email])
-            return redirect("/")
-    return render(request, "contact.html", {"form": form})
+            #return redirect("/")
+    return render(request, "contact.html", {"form": form, "mesaj": mesaj})
 
 
 def custom_login(request):
