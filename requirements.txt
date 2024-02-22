@@ -6,3 +6,4 @@ djangorestframework==3.14.0
 django-tinymce==3.7.1
 psycopg2==2.9.9
 django-storages==1.14.2
+boto3==1.34.47
