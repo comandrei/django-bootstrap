@@ -165,6 +165,7 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
@@ -174,16 +175,18 @@ if AWS_ACCESS_KEY_ID is not None:
          "default": {
             "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
             "OPTIONS":{
-                "location": "media"
+                "location": "media",
+                "default-acl": "public-read"
             }
 
         },
         "staticfiles": {
             "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
             "OPTIONS": {
-                "location": "static"
+                "location": "static",
+                "default-acl": "public-read"
             }
         },
     }
-    STATIC_URL = f"{AWS_S3_ENDPOINT_URL}/static/"
-    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/media/"
+    STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
