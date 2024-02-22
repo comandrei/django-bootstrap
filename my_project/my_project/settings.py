@@ -169,8 +169,8 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-if AWS_ACCESS_KEY_ID:
-    STORAGE = {
+if AWS_ACCESS_KEY_ID is not None:
+    STORAGES = {
          "default": {
             "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
             "OPTIONS":{
