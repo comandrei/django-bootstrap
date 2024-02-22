@@ -7,4 +7,4 @@ RUN pip3 install -r requirements.txt
 ADD my_project my_project
 WORKDIR my_project
 EXPOSE 8000
-ENTRYPOINT [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["./docker_entrypoint.sh"]
