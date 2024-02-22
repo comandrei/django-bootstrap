@@ -4,3 +4,4 @@ pygraphviz==1.12
 django-debug-toolbar==4.2.0
 djangorestframework==3.14.0
 django-tinymce==3.7.1
+psycopg2==2.9.9
